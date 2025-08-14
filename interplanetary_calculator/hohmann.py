@@ -3,14 +3,14 @@ import csv
 import check
 import os
 import time
+
 def hohmann_transfer_calculator():
     #This is the hohmann calculator file.
-    
     pi = math.pi
     planet_data = {}
     orbit_time = {}
 
-    #This is a csv function. this opens the csv file
+    #This is a csv function. this opens the csv file and grabs the data needed
     def open_csv(solar_system):
         planet_data.clear()
         orbit_time.clear()
@@ -78,7 +78,7 @@ def hohmann_transfer_calculator():
 
     #this is the user interface,
     #this asks the user for their current planet location and their desired location.
-    #then it checks if what the user put in is the same, if it is, it ends the code.
+    #then it checks if what the user put in is the same, if it is, it ends the code and returns the user to the main screen.
     #if not it continues with the code.
 
     while True:

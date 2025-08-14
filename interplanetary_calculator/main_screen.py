@@ -4,14 +4,32 @@ import sys
 import os
 import platform
 import time
-print("Version 1.2.9")
+import subprocess
+
+print("Version 1.3.0")
+
+def auto_updates():
+    print("Please wait, checking for updates...")
+    try:
+        subprocess.run(["git", "fetch", "origin"], check=True stdout=subprocess.DEVNULL)
+        local_commit = subprocess.check_output(["git", "rev-parse", "HEAD"]).strip()
+        remote_commit = subprocess.check_output(["git", "rev-parse", "origin/main"]).strip()
+        if local_commit != remote_commit:
+            print("New version avalible. Updating...")
+            subprocess.run(["git", "pull", "origin", "main"], check=True)
+            print("Update success.")
+        else:
+            print("All is up-to-date.")
+    except subprocess.CalledProcessError:
+        print("I appologize, I could not connect to Github. Skipping Update.")
+
 
 def clear_console():
     if platform.system() == "Windows":
         os.system("cls")
     else:
         os.system("clear")
-
+#This is the main screen, you will enter which calculator you want to use, and you type in "exit" if you want to stop the program
 def choice():
     while True:
         print(" ")
@@ -35,14 +53,6 @@ def choice():
         else:
             print(" ")
             print("I'm sorry, that is not a suitable answer.")
+
+auto_updates()
 choice()
-
-
-#To-do list for later versions:
-# - add a code that calculates a transfer from planet to moon, or planet to planet, then too moon.
-# - add inclnation code.
-# - update the code when needed.
-# - make 3D model.
-# - add survivability equation.
-# - add a code that logs the outputs.
-# - after all of this, add a GUI to make the console and UI easier for people to use.
