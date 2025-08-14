@@ -6,18 +6,22 @@ import platform
 import time
 import subprocess
 
-print("Version 1.3.0")
+print("Version 1.3.2")
 
 def auto_updates():
     print("Please wait, checking for updates...")
     try:
-        subprocess.run(["git", "fetch", "origin"], check=True stdout=subprocess.DEVNULL)
+        subprocess.run(["git", "fetch", "origin"], check=True, stdout=subprocess.DEVNULL)
         local_commit = subprocess.check_output(["git", "rev-parse", "HEAD"]).strip()
         remote_commit = subprocess.check_output(["git", "rev-parse", "origin/main"]).strip()
         if local_commit != remote_commit:
-            print("New version avalible. Updating...")
-            subprocess.run(["git", "pull", "origin", "main"], check=True)
-            print("Update success.")
+            update = input("An update is avalible, would you like to proceed? [Y/N]").strip().lower()
+            if update == "yes":
+                print("Updating...")
+                subprocess.run(["git", "pull", "origin", "main"], check=True)
+                print("Update success.")
+            else:
+                print("Understood.")
         else:
             print("All is up-to-date.")
     except subprocess.CalledProcessError:
