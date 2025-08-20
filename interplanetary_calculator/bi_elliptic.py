@@ -14,10 +14,12 @@ def bi_elliptic_transfer_calculator():
 
     script_dir = os.path.dirname(os.path.abspath(__file__))
 
-    if solar_system == "yes":
+    if solar_system == "kerbol system":
         filename = os.path.join(script_dir, 'kerbol_system.csv')
-    else:
+    elif solar_system == "sol system":
         filename = os.path.join(script_dir, 'solar_system.csv')
+    else:
+       filename = os.path.join(script_dir, 'proxima_centarui.csv')
     with open(filename, 'r') as csvfile:
         csvreader = csv.DictReader(csvfile)
         for row in csvreader:
@@ -58,13 +60,15 @@ def bi_elliptic_transfer_calculator():
     print("Kerbol System: Moho, Eve, Kerbin, Duna, Dres, Jool, Eeloo.")
     print("Solar System: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto.\n")
 
-    solar_systems = input("are you in the kerbol System? ").strip().lower()
+    solar_systems = input("are you in the Kerbol system, Sol system, or Proxima Centauri system? ").strip().lower()
     open_csv(solar_systems)
     print("Available planets:", ', '.join(planet_data.keys()))
-    if solar_systems == "yes":
+    if solar_systems == "kerbol System":
         GM = 1.1723328e18
-    else:
+    elif solar_systems == "sol system":
         GM = 1.32712440018e20
+    else:
+       GM = 1.62e19
     print(" ")
     location = input("what planet are you on? ").strip().lower()
     print(" ")
@@ -75,7 +79,7 @@ def bi_elliptic_transfer_calculator():
         break
     elif location not in planet_data or destination not in planet_data:
         print(" ")
-        print("Your input contains a Planet that is not in the Kerbol Solar System or in our Solar System.")
+        print("Your input contains a Planet that is not in the Kerbol Solar System,  in our Solar System, or in the Proxima Centauri system.")
         break
     else:
         print(" ")

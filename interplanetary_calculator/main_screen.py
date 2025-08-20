@@ -6,7 +6,7 @@ import platform
 import time
 import subprocess
 
-print("Version 1.3.2")
+print("Version 1.3.5")
 
 def auto_updates():
     print("Please wait, checking for updates...")
@@ -33,6 +33,7 @@ def clear_console():
         os.system("cls")
     else:
         os.system("clear")
+
 #This is the main screen, you will enter which calculator you want to use, and you type in "exit" if you want to stop the program
 def choice():
     while True:
