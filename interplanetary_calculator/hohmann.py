@@ -20,7 +20,7 @@ def hohmann_transfer_calculator():
         if solar_system == "kerbol system":
             filename = os.path.join(script_dir, 'kerbol_system.csv')
         elif solar_system == "sol system":
-            filename = os.path.join(script_dir, 'solar_system')
+            filename = os.path.join(script_dir, 'solar_system.csv')
         else:
             filename = os.path.join(script_dir, 'proxima_centarui.csv')
         with open(filename, 'r') as csvfile:
@@ -77,6 +77,7 @@ def hohmann_transfer_calculator():
     print("---------------------------------------------------------")
     print("Kerbol System: Moho, Eve, Kerbin, Duna, Dres, Jool, Eeloo.")
     print("Solar System: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto.\n")
+    print("Proxima Centarui: Proxima Centarui b, Prozima Centarui d, Proxima Centauri c (candidate).\n")
 
     #this is the user interface,
     #this asks the user for their current planet location and their desired location.

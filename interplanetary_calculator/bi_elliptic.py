@@ -59,6 +59,7 @@ def bi_elliptic_transfer_calculator():
     print("---------------------------------------------------------")
     print("Kerbol System: Moho, Eve, Kerbin, Duna, Dres, Jool, Eeloo.")
     print("Solar System: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto.\n")
+    print("Proxima Centarui: Proxima Centarui b, Prozima Centarui d, Proxima Centauri c (candidate).\n")
 
     solar_systems = input("are you in the Kerbol system, Sol system, or Proxima Centauri system? ").strip().lower()
     open_csv(solar_systems)
