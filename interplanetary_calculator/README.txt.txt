@@ -1,5 +1,5 @@
 Hi whoever reads this text file, I am the creator of this code and I'm here to tell you what the project is and how to run it and what you'll need. I created 5 files of code, main_screen.py, Hohmann.py, bi-elliptic.py, check.py, and 3d_model.py. 
-The 3d_model and check files are a work in progress. this is the v1.2.8 of my code. what you have to do is run the main_screen.py, and you can go from there with the UI. 
-The code will then open up either the Hohmann or bi-elliptic files and run their code depending on what you input for your choice of calculator. 
+The 3d_model and check files are a work in progress. this is the v1.3.7 of my code. what you have to do is run the main_screen.py, and you can go from there with the UI. 
+The code will then open up either the Hohmann or bi-elliptic files and run their code depending on what you input for your choice of calculator. all orbits are flat and the orbits of planets are perfect circles, I plan to add inclination change and everything else to this code
 I do plan to add more stuff and features in future updates of my code, but it will take a while due to also being busy with other projects and school. I do hope you enjoy this starter version of my code.
 This Project is licensed under MIT Lisense, please see the License file for details on the conditions and copyright claims.
