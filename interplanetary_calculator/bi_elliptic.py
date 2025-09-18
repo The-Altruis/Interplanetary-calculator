@@ -3,6 +3,7 @@ import csv
 import check
 import os
 import time
+import sys
 
 def bi_elliptic_transfer_calculator():
   
@@ -18,8 +19,11 @@ def bi_elliptic_transfer_calculator():
         filename = os.path.join(script_dir, 'kerbol_system.csv')
     elif solar_system == "sol system":
         filename = os.path.join(script_dir, 'solar_system.csv')
+    elif solar_system == "proxima centauri":
+       filename = os.path.join(script_dir, 'proxima_centauri.csv')
     else:
-       filename = os.path.join(script_dir, 'proxima_centarui.csv')
+       print("Sorry that was not a solar system in our data base. please try again")
+       sys.exit()
     with open(filename, 'r') as csvfile:
         csvreader = csv.DictReader(csvfile)
         for row in csvreader:
@@ -64,12 +68,12 @@ def bi_elliptic_transfer_calculator():
     solar_systems = input("are you in the Kerbol system, Sol system, or Proxima Centauri system? ").strip().lower()
     open_csv(solar_systems)
     print("Available planets:", ', '.join(planet_data.keys()))
-    if solar_systems == "kerbol System":
+    if solar_systems == "kerbol system":
         GM = 1.1723328e18
     elif solar_systems == "sol system":
         GM = 1.32712440018e20
-    else:
-       GM = 1.62e19
+    elif solar_systems == "proxima centauri":
+        GM = 1.62e19
     print(" ")
     location = input("what planet are you on? ").strip().lower()
     print(" ")
@@ -110,12 +114,12 @@ def bi_elliptic_transfer_calculator():
     print(f"In total, you'll need a max delta v of {total_dv:.2f} m/s")
     print("------------------------------------------------------------\n")
         
-    redo_calculations = input("Would you like to calculate something else? [Y/N] ").capitalize()
-    if redo_calculations == "Yes":
+    redo_calculations = input("Would you like to calculate something else? [Y/N] ").lower()
+    if redo_calculations == "yes":
         print("------------------------------------------------------------")
         print(" ")
         continue
-    elif redo_calculations == "No":
+    elif redo_calculations == "no":
         print(" ")
         print("Understood. Enjoy your day.")
         break
