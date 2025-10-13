@@ -1,47 +1,38 @@
+from data_loader import load_solar_system
 import math
-import csv
-import check
-import os
-import time
-import sys
 
 def hohmann_transfer_calculator():
     #This is the hohmann calculator file.
     pi = math.pi
-    planet_data = {}
-    orbit_time = {}
 
-    #This is a csv function. this opens the csv file and grabs the data needed
-    def open_csv(solar_system):
-        planet_data.clear()
-        orbit_time.clear()
+    system_name = input("Which solar system are you in? ").strip().lower()
+    system = load_solar_system(system_name)
 
-        script_dir = os.path.dirname(os.path.abspath(__file__))
+    # access planets
+    print("Available planets:", ', '.join(system.planets.keys()))
 
-        if solar_system == "kerbol system":
-            filename = os.path.join(script_dir, 'kerbol_system.csv')
-        elif solar_system == "sol system":
-            filename = os.path.join(script_dir, 'solar_system.csv')
-        elif solar_system == "proxima centauri":
-            filename = os.path.join(script_dir, 'proxima_centarui.csv')
-        else:
-            print("Sorry that was not a solar system in our data base. please try again")
-            sys.exit()
-        with open(filename, 'r') as csvfile:
-            csvreader = csv.DictReader(csvfile)
-            for row in csvreader:
-                name = row['Name'].strip().lower()
-                semi_major_axis = float(row['Semi-major Axis (m)'])
-                planet_data[name] = semi_major_axis
-                orbital_period = float(row['Orbital Period (s)'])
-                orbit_time[name] = orbital_period
+    location = input("What planet are you on? ").strip().lower()
+    destination = input("What planet do you want to go to? ").strip().lower()
+
+    if location == destination:
+        print("Your location and destination cannot be the same.")
+        return
+
+    if location not in system.planets or destination not in system.planets:
+        print("Invalid planet.")
+        return
+
+    location_axis = system.get_planet(location)["axis"]
+    destination_axis = system.get_planet(destination)["axis"]
+    location_time = system.get_planet(location)["orbital_period"]
+    destination_time = system.get_planet(destination)["orbital_period"]
+
 
 
     #This function is used to calculate the transfer angle window for two of the planets in the kerbol system.
     #I added a while loop due to the fact that when you put say,
     #Eeloo and kerbin, the output is less than -360, so I have it add 360,
     #till the out put is greater than -360.
-
 
     def hohmann_transfer_angles(location_axis, destination_axis, location_time,destination_time, GM):
         global number_of_orbits
@@ -81,48 +72,29 @@ def hohmann_transfer_calculator():
     print("---------------------------------------------------------")
     print("Kerbol System: Moho, Eve, Kerbin, Duna, Dres, Jool, Eeloo.")
     print("Solar System: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto.\n")
-    print("Proxima Centarui: Proxima Centarui b, Prozima Centarui d, Proxima Centauri c (candidate).\n")
+    print("Proxima Centarui: Proxima Centarui b, Proxima Centarui d, Proxima Centauri c (candidate).\n")
 
     #this is the user interface,
     #this asks the user for their current planet location and their desired location.
     #then it checks if what the user put in is the same, if it is, it ends the code and returns the user to the main screen.
     #if not it continues with the code.
 
-    while True:
-        solar_systems = input("are you in the Kerbol system, Sol system, or Proxima Centauri system? ").strip().lower()
-        open_csv(solar_systems)
-        print("Available planets:", ', '.join(planet_data.keys()))
-        if solar_systems == "kerbol system":
-            GM = 1.1723328e18
-        elif solar_systems == "sol system":
-            GM = 1.32712440018e20
-        else:
-            GM = 1.62e19
-        print(" ")
-        location = input("what planet are you on? ").strip().lower()
-        print(" ")
-        destination = input("What planet do you want to go to? ").strip().lower()
-        if location == destination:
-            print(" ")
-            print("Your location and destination cannot be the same. Shutting off...")
-            break
-        elif location not in planet_data or destination not in planet_data:
-            print(" ")
-            print("Your input contains a Planet that is not in the Kerbol Solar System or in our Solar System.")
-            break
-        else:
-            print(" ")
-            print("Please wait...")
-            print("------------------------------------------------------------")
-            time.sleep(5)
-        #this will go into the kerbol_system.csv file
-        #and grab the semi-major axis and the orbital time for the planets
+    system = load_solar_system(system_name)
+    GM = system.GM_star
 
-        location_axis = planet_data[location]
-        destination_axis = planet_data[destination]
-        location_time = orbit_time[location]
-        destination_time = orbit_time[destination]
-        check.more_efficient(location_axis, destination_axis)
+    while True:
+
+        if location == destination:
+            print("Location and destination cannot be the same.")
+            break
+        if location not in system.planets or destination not in system.planets:
+            print("Invalid planet.")
+            break
+
+        location_axis = system.get_planet(location)["axis"]
+        destination_axis = system.get_planet(destination)["axis"]
+        location_time = system.get_planet(location)["orbital_period"]
+        destination_time = system.get_planet(destination)["orbital_period"]
 
         print(
             f"{location}: Axis = {location_axis:.3e}, Period = {location_time:.3e}"
@@ -143,13 +115,12 @@ def hohmann_transfer_calculator():
         print(" ")
 
         # this will restart to calculations and clear the console if you decide to continue so you don't have to scroll through hundreds of lines of console outputs
-        redo_calculations = input(
-            "Would you like to calculate something else? [Y/N] ").lower()
-        if redo_calculations == "yes":
+        redo_calculations = input("Would you like to calculate something else? [Y/N] ").lower()
+        if redo_calculations in ["y", "yes"]:
             print("------------------------------------------------------------")
             print(" ")
             continue
-        elif redo_calculations == "no":
+        elif redo_calculations in ["n", "no"]:
             print(" ")
             print("Understood. Enjoy your day.")
             break
