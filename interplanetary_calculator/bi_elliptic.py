@@ -2,7 +2,7 @@ from data_loader import load_solar_system
 import math
 
 def bi_elliptic_transfer_calculator():
-    print("Interplanetary Bi-elliptic Transfer Calculator for the Kerbin and Sol systems:")
+    print("Interplanetary Bi-elliptic Transfer Calculator for the Kerbin, Sol, and proxima centauri systems:")
     print("---------------------------------------------------------")
     pi = math.pi
     system_name = input("Which solar system are you in? ").strip().lower()

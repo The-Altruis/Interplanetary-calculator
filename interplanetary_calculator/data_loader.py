@@ -27,7 +27,7 @@ def load_solar_system(system_name):
         for row in csvreader:
             system.add_planet(
                 row['Name'],
-                float(row['Semi-major Axis (m)']),
+                float(row['Semi-major Axis (km)']),
                 float(row['Orbital Period (s)']),
                 float(row['Mass (kg)']),
                 float(row['Eccentricity']),

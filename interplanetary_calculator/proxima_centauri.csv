@@ -1,4 +1,4 @@
-Name,Radius (m),Mass (kg),Semi-major Axis (m),Eccentricity,Inclination (deg),Orbital Period (s),GM (km^3/s^2)
-Proxima Centauri b,7008100.000000001,6.3902433e+24,7252504771.536,0.0,966353.76,1.327e17
-Proxima Centauri d,5096800.0,1.5527694000000002e+24,4309914654.867,0.0,442660.032,3.986e11
-Proxima Centauri c (candidate),15927500.0,4.658308200000001e+25,222751229472.30002,0.04,166579200.0,3.986e11
+Name,Radius (km),Mass (kg),Semi-major Axis (km),Eccentricity,Inclination (deg),Orbital Period (s),GM (km^3/s^2)
+Proxima Centauri b,7008.1000000001,6.3902433e+21,7252504771.536,0.0,966353.76,1.327e17
+Proxima Centauri d,5096.8,1.5527694000000002e+21,4309914654.867,0.0,442660.032,3.986e11
+Proxima Centauri c (candidate),15927.5,4.658308200000001e+22,222751229472.30002,0.04,166579200.0,3.986e11
