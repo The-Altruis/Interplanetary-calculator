@@ -4,7 +4,8 @@ import math
 def hohmann_transfer_calculator():
     #This is the hohmann calculator file.
     pi = math.pi
-
+    print("Interplanetary Hohmann Transfer Calculator for the Kerbin, Sol and Proxima Centauri systems:")
+    print("---------------------------------------------------------")
     system_name = input("Which solar system are you in? ").strip().lower()
     system = load_solar_system(system_name)
 
@@ -67,13 +68,6 @@ def hohmann_transfer_calculator():
         kepler_time_days = kepler_time / 86400
         return round(kepler_time_days)
 
-    #this is the info that is shown when running the program
-    print("Interplanetary Hohmann Transfer Calculator for the Kerbin, Sol and Proxima Centauri systems:")
-    print("---------------------------------------------------------")
-    print("Kerbol System: Moho, Eve, Kerbin, Duna, Dres, Jool, Eeloo.")
-    print("Solar System: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune, Pluto.\n")
-    print("Proxima Centarui: Proxima Centarui b, Proxima Centarui d, Proxima Centauri c (candidate).\n")
-
     #this is the user interface,
     #this asks the user for their current planet location and their desired location.
     #then it checks if what the user put in is the same, if it is, it ends the code and returns the user to the main screen.
@@ -91,10 +85,6 @@ def hohmann_transfer_calculator():
             print("Invalid planet.")
             break
 
-        location_axis = system.get_planet(location)["axis"]
-        destination_axis = system.get_planet(destination)["axis"]
-        location_time = system.get_planet(location)["orbital_period"]
-        destination_time = system.get_planet(destination)["orbital_period"]
 
         print(
             f"{location}: Axis = {location_axis:.3e}, Period = {location_time:.3e}"

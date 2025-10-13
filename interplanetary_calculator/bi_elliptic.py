@@ -3,6 +3,7 @@ import math
 
 def bi_elliptic_transfer_calculator():
     print("Interplanetary Bi-elliptic Transfer Calculator for the Kerbin and Sol systems:")
+    print("---------------------------------------------------------")
     pi = math.pi
     system_name = input("Which solar system are you in? ").strip().lower()
     system = load_solar_system(system_name)
@@ -64,8 +65,6 @@ def bi_elliptic_transfer_calculator():
                 print("Invalid planet.")
                 break
             
-            location_axis = system.get_planet(location)["axis"]
-            destination_axis = system.get_planet(destination)["axis"]
 
             a_1, a_2 = bi_elliptic_transfer(location_axis, destination_axis, r_b)
             t1, t2, t_total = bi_elliptic_time(a_1, a_2, GM)

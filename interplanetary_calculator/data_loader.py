@@ -25,7 +25,7 @@ def load_solar_system(system_name):
     with open(filename, 'r') as csvfile:
         csvreader = csv.DictReader(csvfile)
         for row in csvreader:
-            system.add__planet(
+            system.add_planet(
                 row['Name'],
                 float(row['Semi-major Axis (m)']),
                 float(row['Orbital Period (s)']),

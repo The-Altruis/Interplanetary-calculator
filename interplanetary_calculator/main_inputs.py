@@ -6,7 +6,7 @@ import platform
 import time
 import subprocess
 
-print("Version 1.3.9")
+print("Version 1.3.10")
 
 def auto_updates():
     print("Please wait, checking for updates...")
